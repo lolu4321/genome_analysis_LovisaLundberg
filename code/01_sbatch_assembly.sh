@@ -17,4 +17,4 @@ canu \
 -d /home/lolu4321/genome_analysis_LovisaLundberg/analyses \
 genomeSize=2.6m \
 stopOnReadQuality=false \
--pacbio-raw /home/lolu4321/genome_analysis_LovisaLundberg/data/DNA_raw_data/ERR2028*.fastq.gz  
+-pacbio-raw /home/lolu4321/genome_analysis_LovisaLundberg/data/DNA_raw_data/  
