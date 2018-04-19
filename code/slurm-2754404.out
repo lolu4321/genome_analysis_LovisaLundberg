@@ -221,3 +221,79 @@ canu/1.7 has the useGrid option default set to useGrid=false. This can be overri
 
     cd correction/0-mercounts
     ./meryl.sh 1 > ./meryl.000001.out 2>&1
+
+-- Finished on Thu Apr 19 17:28:44 2018 (747 seconds) with 1048.869 GB free disk space
+----------------------------------------
+-- Meryl finished successfully.
+--
+--  16-mers                                                                                           Fraction
+--    Occurrences   NumMers                                                                         Unique Total
+--       1-     1 591185098 *******************************************************************--> 0.5244 0.1974
+--       2-     2 261765837 ********************************************************************** 0.7566 0.3722
+--       3-     4 171949032 *********************************************                          0.8596 0.4885
+--       5-     7  58297114 ***************                                                        0.9355 0.6125
+--       8-    11  21542166 *****                                                                  0.9678 0.6945
+--      12-    16  10107970 **                                                                     0.9825 0.7510
+--      17-    22   5024397 *                                                                      0.9900 0.7923
+--      23-    29   2506072                                                                        0.9938 0.8215
+--      30-    37   1210178                                                                        0.9958 0.8412
+--      38-    46    587977                                                                        0.9968 0.8535
+--      47-    56    273187                                                                        0.9973 0.8611
+--      57-    67    124652                                                                        0.9975 0.8654
+--      68-    79     64585                                                                        0.9976 0.8678
+--      80-    92     63335                                                                        0.9976 0.8693
+--      93-   106    158318                                                                        0.9977 0.8712
+--     107-   121    428480                                                                        0.9978 0.8770
+--     122-   137    719720                                                                        0.9982 0.8944
+--     138-   154    686290                                                                        0.9989 0.9261
+--     155-   172    377245                                                                        0.9995 0.9589
+--     173-   191    135417                                                                        0.9998 0.9784
+--     192-   211     41857                                                                        0.9999 0.9861
+--     212-   232     17081                                                                        0.9999 0.9887
+--     233-   254     11521                                                                        1.0000 0.9899
+--     255-   277      9329                                                                        1.0000 0.9909
+--     278-   301      6609                                                                        1.0000 0.9917
+--     302-   326      4168                                                                        1.0000 0.9923
+--     327-   352      2459                                                                        1.0000 0.9927
+--     353-   379      1585                                                                        1.0000 0.9930
+--     380-   407      1277                                                                        1.0000 0.9932
+--     408-   436       937                                                                        1.0000 0.9934
+--     437-   466       677                                                                        1.0000 0.9935
+--     467-   497       506                                                                        1.0000 0.9936
+--     498-   529       445                                                                        1.0000 0.9937
+--     530-   562       484                                                                        1.0000 0.9938
+--     563-   596       576                                                                        1.0000 0.9939
+--     597-   631       619                                                                        1.0000 0.9940
+--     632-   667       706                                                                        1.0000 0.9941
+--     668-   704       567                                                                        1.0000 0.9942
+--     705-   742       485                                                                        1.0000 0.9944
+--     743-   781       394                                                                        1.0000 0.9945
+--     782-   821       296                                                                        1.0000 0.9946
+--
+--     4119536 (max occurrences)
+--  2403990516 (total mers, non-unique)
+--   536128161 (distinct mers, non-unique)
+--   591185098 (unique mers)
+-- For mhap overlapping, set repeat k-mer threshold to 29951.
+--
+-- Found 2995175614 16-mers; 1127313259 distinct and 591185098 unique.  Largest count 4119536.
+--
+-- OVERLAPPER (mhap) (correction)
+--
+-- Set corMhapSensitivity=low based on read coverage of 1153.
+--
+-- PARAMETERS: hashes=256, minMatches=3, threshold=0.8
+--
+-- Given 6 GB, can fit 18000 reads per block.
+-- For 13 blocks, set stride to 2 blocks.
+-- Logging partitioning to 'correction/1-overlapper/partitioning.log'.
+-- Configured 12 mhap precompute jobs.
+-- Configured 37 mhap overlap jobs.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'cormhap' concurrent execution on Thu Apr 19 17:29:42 2018 with 1053.453 GB free disk space (12 processes; 2 concurrently)
+
+    cd correction/1-overlapper
+    ./precompute.sh 1 > ./precompute.000001.out 2>&1
+    ./precompute.sh 2 > ./precompute.000002.out 2>&1
