@@ -3,7 +3,7 @@
 #SBATCH -A g2018003_6
 #SBATCH -p core
 #SBATCH -n 2
-#SBATCH -t 13:00:00
+#SBATCH -t 14:00:00
 #SBATCH -J 01_DNA_assembly
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user lovisa.lundberg.4321@student.uu.se
@@ -12,10 +12,10 @@
 module load bioinfo-tools canu/1.7
 
 #Commands
-canu -assemble \
--p leptospirillum \  
+canu \
+-p leptospirillum_DNAassembly \  
 -d /home/lolu4321/genome_analysis_LovisaLundberg/analyses  \
-genomeSize=3m \
+genomeSize=2.6m \
 stopOnReadQuality=false \
 -pacbio-raw 
 /home/lolu4321/genome_analysis_LovisaLundberg/data/DNA_raw_data/ERR2028*.fastq.gz  
