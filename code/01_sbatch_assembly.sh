@@ -1,5 +1,4 @@
 #!/bin/bash -l
-
 #SBATCH -A g2018003
 #SBATCH -p core
 #SBATCH -n 2
@@ -14,7 +13,7 @@ module load bioinfo-tools canu/1.7
 #Commands
 canu \
 -p leptospirillum \
--d /home/lolu4321/genome_analysis_LovisaLundberg/analyses \
+-d /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2 \
 genomeSize=2.6m \
 stopOnReadQuality=false \
--pacbio-raw /home/lolu4321/genome_analysis_LovisaLundberg/data/DNA_raw_data/  
+-pacbio-raw /home/lolu4321/genome_analysis_LovisaLundberg/data/DNA_raw_data/ERR*.fastq.gz
