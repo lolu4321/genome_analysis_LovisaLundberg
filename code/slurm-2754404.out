@@ -1,0 +1,223 @@
+canu/1.7 has the useGrid option default set to useGrid=false. This can be overriden by another configuration file or a command-line option.
+canu/1.7 has the useGrid option default set to useGrid=false. This can be overriden by another configuration file or a command-line option.
+canu/1.7 has the useGrid option default set to useGrid=false. This can be overriden by another configuration file or a command-line option.
+canu/1.7 has the useGrid option default set to useGrid=false. This can be overriden by another configuration file or a command-line option.
+-- Canu 1.7
+--
+-- CITATIONS
+--
+-- Koren S, Walenz BP, Berlin K, Miller JR, Phillippy AM.
+-- Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation.
+-- Genome Res. 2017 May;27(5):722-736.
+-- http://doi.org/10.1101/gr.215087.116
+-- 
+-- Read and contig alignments during correction, consensus and GFA building use:
+--   Šošic M, Šikic M.
+--   Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance.
+--   Bioinformatics. 2017 May 1;33(9):1394-1395.
+--   http://doi.org/10.1093/bioinformatics/btw753
+-- 
+-- Overlaps are generated using:
+--   Berlin K, et al.
+--   Assembling large genomes with single-molecule sequencing and locality-sensitive hashing.
+--   Nat Biotechnol. 2015 Jun;33(6):623-30.
+--   http://doi.org/10.1038/nbt.3238
+-- 
+--   Myers EW, et al.
+--   A Whole-Genome Assembly of Drosophila.
+--   Science. 2000 Mar 24;287(5461):2196-204.
+--   http://doi.org/10.1126/science.287.5461.2196
+-- 
+--   Li H.
+--   Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences.
+--   Bioinformatics. 2016 Jul 15;32(14):2103-10.
+--   http://doi.org/10.1093/bioinformatics/btw152
+-- 
+-- Corrected read consensus sequences are generated using an algorithm derived from FALCON-sense:
+--   Chin CS, et al.
+--   Phased diploid genome assembly with single-molecule real-time sequencing.
+--   Nat Methods. 2016 Dec;13(12):1050-1054.
+--   http://doi.org/10.1038/nmeth.4035
+-- 
+-- Contig consensus sequences are generated using an algorithm derived from pbdagcon:
+--   Chin CS, et al.
+--   Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+--   Nat Methods. 2013 Jun;10(6):563-9
+--   http://doi.org/10.1038/nmeth.2474
+-- 
+-- CONFIGURE CANU
+--
+-- Detected Java(TM) Runtime Environment '1.8.0_151' (from '/sw/comp/java/x86_64/sun_jdk1.8.0_151/bin/java').
+-- Detected gnuplot version '4.6 patchlevel 2' (from 'gnuplot') and image format 'png'.
+-- Detected 20 CPUs and 125 gigabytes of memory.
+-- Detected Slurm with 'sinfo' binary in /usr/bin/sinfo.
+-- Grid engine disabled per useGrid=false option.
+--
+--                            (tag)Concurrency
+--                     (tag)Threads          |
+--            (tag)Memory         |          |
+--        (tag)         |         |          |     total usage     algorithm
+--        -------  ------  --------   --------  -----------------  -----------------------------
+-- Local: meryl      8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (k-mer counting)
+-- Local: cormhap    6 GB   10 CPUs x   2 jobs    12 GB   20 CPUs  (overlap detection with mhap)
+-- Local: obtovl     4 GB    5 CPUs x   4 jobs    16 GB   20 CPUs  (overlap detection)
+-- Local: utgovl     4 GB    5 CPUs x   4 jobs    16 GB   20 CPUs  (overlap detection)
+-- Local: ovb        4 GB    1 CPU  x  20 jobs    80 GB   20 CPUs  (overlap store bucketizer)
+-- Local: ovs        8 GB    1 CPU  x  15 jobs   120 GB   15 CPUs  (overlap store sorting)
+-- Local: red        4 GB    4 CPUs x   5 jobs    20 GB   20 CPUs  (read error detection)
+-- Local: oea        4 GB    1 CPU  x  20 jobs    80 GB   20 CPUs  (overlap error adjustment)
+-- Local: bat       16 GB    4 CPUs x   1 job     16 GB    4 CPUs  (contig construction)
+-- Local: gfa        8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (GFA alignment and processing)
+--
+-- Found PacBio uncorrected reads in the input files.
+--
+-- Generating assembly 'leptospirillum' in '/pica/h1/lolu4321/genome_analysis_LovisaLundberg/analyses_v2'
+--
+-- Parameters:
+--
+--  genomeSize        2600000
+--
+--  Overlap Generation Limits:
+--    corOvlErrorRate 0.2400 ( 24.00%)
+--    obtOvlErrorRate 0.0450 (  4.50%)
+--    utgOvlErrorRate 0.0450 (  4.50%)
+--
+--  Overlap Processing Limits:
+--    corErrorRate    0.3000 ( 30.00%)
+--    obtErrorRate    0.0450 (  4.50%)
+--    utgErrorRate    0.0450 (  4.50%)
+--    cnsErrorRate    0.0750 (  7.50%)
+--
+--
+-- BEGIN CORRECTION
+--
+----------------------------------------
+-- Starting command on Thu Apr 19 17:14:59 2018 with 1054.205 GB free disk space
+
+    cd .
+    /sw/apps/bioinfo/canu/1.7/rackham/Linux-amd64/bin/gatekeeperCreate \
+      -minlength 1000 \
+      -o ./leptospirillum.gkpStore.BUILDING \
+      ./leptospirillum.gkpStore.gkp \
+    > ./leptospirillum.gkpStore.BUILDING.err 2>&1
+
+-- Finished on Thu Apr 19 17:16:12 2018 (73 seconds) with 1053.457 GB free disk space
+----------------------------------------
+--
+-- WARNING:  Gatekeeper detected potential problems in your input reads.
+-- WARNING:
+-- WARNING:  Please review the logging in files:
+-- WARNING:    /pica/h1/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/leptospirillum.gkpStore.BUILDING.err
+-- WARNING:    /pica/h1/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/leptospirillum.gkpStore.BUILDING/errorLog
+-- 
+-- Proceeding with assembly because stopOnReadQuality=false.
+--
+-- In gatekeeper store './leptospirillum.gkpStore':
+--   Found 215276 reads.
+--   Found 2998404754 bases (1153.23 times coverage).
+--
+--   Read length histogram (one '*' equals 291.05 reads):
+--        0    999      0 
+--     1000   1999  20374 **********************************************************************
+--     2000   2999  13389 **********************************************
+--     3000   3999  10440 ***********************************
+--     4000   4999   9065 *******************************
+--     5000   5999   8459 *****************************
+--     6000   6999   8322 ****************************
+--     7000   7999   8007 ***************************
+--     8000   8999   7849 **************************
+--     9000   9999   8363 ****************************
+--    10000  10999   8919 ******************************
+--    11000  11999   9049 *******************************
+--    12000  12999   8350 ****************************
+--    13000  13999   7695 **************************
+--    14000  14999   7066 ************************
+--    15000  15999   6436 **********************
+--    16000  16999   5827 ********************
+--    17000  17999   5370 ******************
+--    18000  18999   5004 *****************
+--    19000  19999   4571 ***************
+--    20000  20999   4235 **************
+--    21000  21999   3998 *************
+--    22000  22999   3583 ************
+--    23000  23999   3272 ***********
+--    24000  24999   2991 **********
+--    25000  25999   2795 *********
+--    26000  26999   2685 *********
+--    27000  27999   2354 ********
+--    28000  28999   2215 *******
+--    29000  29999   2139 *******
+--    30000  30999   2052 *******
+--    31000  31999   2003 ******
+--    32000  32999   1840 ******
+--    33000  33999   1881 ******
+--    34000  34999   1915 ******
+--    35000  35999   1732 *****
+--    36000  36999   1703 *****
+--    37000  37999   1496 *****
+--    38000  38999   1341 ****
+--    39000  39999   1022 ***
+--    40000  40999    875 ***
+--    41000  41999    715 **
+--    42000  42999    583 **
+--    43000  43999    529 *
+--    44000  44999    447 *
+--    45000  45999    385 *
+--    46000  46999    346 *
+--    47000  47999    267 
+--    48000  48999    225 
+--    49000  49999    175 
+--    50000  50999    149 
+--    51000  51999    129 
+--    52000  52999    107 
+--    53000  53999     73 
+--    54000  54999     86 
+--    55000  55999     65 
+--    56000  56999     55 
+--    57000  57999     54 
+--    58000  58999     33 
+--    59000  59999     35 
+--    60000  60999     28 
+--    61000  61999     30 
+--    62000  62999     15 
+--    63000  63999     16 
+--    64000  64999      8 
+--    65000  65999      6 
+--    66000  66999      3 
+--    67000  67999      6 
+--    68000  68999      7 
+--    69000  69999      6 
+--    70000  70999      1 
+--    71000  71999      2 
+--    72000  72999      2 
+--    73000  73999      2 
+--    74000  74999      0 
+--    75000  75999      0 
+--    76000  76999      0 
+--    77000  77999      0 
+--    78000  78999      1 
+--    79000  79999      0 
+--    80000  80999      1 
+--    81000  81999      0 
+--    82000  82999      0 
+--    83000  83999      0 
+--    84000  84999      0 
+--    85000  85999      0 
+--    86000  86999      0 
+--    87000  87999      0 
+--    88000  88999      0 
+--    89000  89999      0 
+--    90000  90999      0 
+--    91000  91999      1 
+--    92000  92999      0 
+--    93000  93999      0 
+--    94000  94999      0 
+--    95000  95999      0 
+--    96000  96999      1 
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Thu Apr 19 17:16:17 2018 with 1053.456 GB free disk space (1 processes; 1 concurrently)
+
+    cd correction/0-mercounts
+    ./meryl.sh 1 > ./meryl.000001.out 2>&1
