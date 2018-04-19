@@ -13,7 +13,7 @@ module load bioinfo-tools canu/1.7
 
 #Commands
 canu \
--p leptospirillum_DNAassembly \
+-p leptospirillum \
 -d /home/lolu4321/genome_analysis_LovisaLundberg/analyses \
 genomeSize=2.6m \
 stopOnReadQuality=false \
