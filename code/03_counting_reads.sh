@@ -1,4 +1,4 @@
-!/bin/bash -l
+#!/bin/bash -l
 
 #SBATCH -A g2018003
 #SBATCH -p core
@@ -13,7 +13,6 @@ module load bioinfo-tools htseq
 
 path=$(echo /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/RNA/mapping/)
 
-#Commands
 for FILE in ERR2036629 ERR2036630 ERR2036631 ERR2036632 ERR2036633 ERR2117288 ERR2117289 \
 ERR2117290 ERR2117291 ERR2117292; do 
 htseq-count \
@@ -21,10 +20,8 @@ htseq-count \
 -r pos \
 -t CDS \
 -i ID \
-#alignment file
 $path*$FILE* \
-#annotation file
-/home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/annotation/copy_annotated.gff;
+/home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/annotation/copy_annotated.gff > /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/read_count/read_count_$FILE;
 done
 
 
