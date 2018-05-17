@@ -1,0 +1,8 @@
+#Commands used in the command line
+
+#Trimming RNA with Trimmomatic
+#Softlinks to raw RNA data in data folder
+java -jar $TRIMMOMATIC_HOME/trimmomatic-0.36.jar PE -phred33 ERR2036629_1.fastq.gz ERR2036629_2.fastq.gz /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/RNA/trim/output_forward_paired.fq.gz /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/RNA/trim/output_forward_unpaired.fq.gz /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/RNA/trim/output_reversed_paired.fq.gz /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/RNA/trim/output_reverse_unpaired.fq.gz ILLUMINACLIP:/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+#indexing before bwa
+bwa index -p leptospirillum.contigs /home/lolu4321/genome_analysis_LovisaLundberg/analyses_v2/leptospirillum.contigs.fasta
